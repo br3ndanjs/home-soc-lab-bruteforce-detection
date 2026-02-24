@@ -2,7 +2,7 @@
 
 
 
-##### **Project Overview**
+#### **Project Overview**
 
 
 
@@ -10,7 +10,7 @@ This project simulates a brute-force attack in an isolated home SOC lab environm
 
 
 
-##### **Project Objectives:**
+#### **Project Objectives:**
 
 
 
@@ -22,7 +22,15 @@ This project simulates a brute-force attack in an isolated home SOC lab environm
 
 
 
-##### **Lab Architecture**
+#### **Lab Architecture**
+
+
+
+**## Lab Architecture**
+
+
+
+**!\[Lab Architecture](architecture/architecture.png)**
 
 
 
@@ -53,9 +61,19 @@ Subnet: 10.10.10.0/24
 |Kali Linux VM|Attacker|10.10.10.5|
 |Windows 11 Enterprise VM|Target + Splunk SIEM|10.10.10.10|
 
-##### 
+## 
 
-**Windows Logging Configuration**
+VirtualBox Network Isolation
+
+
+
+!\[Kali Network Config](screenshots/virtualbox\_network\_kali.png)
+
+!\[Windows Network Config](screenshots/virtualbox\_network\_windows.png)
+
+
+
+##### **Windows Logging Configuration**
 
 
 
@@ -94,7 +112,15 @@ To verify event logging, I attempted to log in with incorrect credentials and co
 
 
 
-##### **SIEM Configuration (Splunk)**
+\## Detection Evidence – Event ID 4625
+
+
+
+!\[Event Viewer 4625](screenshots/eventviewer\_4625.png)
+
+
+
+#### **SIEM Configuration (Splunk)**
 
 
 
@@ -130,7 +156,7 @@ This query confirmed Windows Security events were continuously indexed and acces
 
 
 
-##### **Attack Simulation**
+#### **Attack Simulation**
 
 
 
@@ -146,15 +172,15 @@ Command executed in kali: hydra -l testuser -P passwords.txt rdp://10.10.10.10
 
 
 
-(testuser, as the name suggests, is a user account on the Winodws VM for tests, and passwords.txt is a simple list of passwords I made)
+(testuser, as the name suggests, is a user account on the Windows VM for tests, and passwords.txt is a simple list of passwords I made)
 
 
 
-Result: Multiple failed authentication attempts (Event ID 4625) originated from 10.10.10.5.
+Result: Multiple failed authentication attempts (Event ID 4625) originating from 10.10.10.5.
 
 
 
-##### **Detection Engineering**
+#### **Detection Engineering**
 
 
 
@@ -202,11 +228,27 @@ During the attack: Multiple 4625 events from 10.10.10.5. No successful logins ob
 
 
 
-In a real SOC environment, the same detection logic applies and could be useful for alert escalation. For example, if a brute-force attack consisting of just 4625 events is detected, it could be assigned a medium severity level. If a 4624 event is also detected, it would indicate that the brute-force attack was successful in obtaining access and would therefore be classified as a high-severity alert requiring immediate attention.
+In a production environment, repeated authentication failures from a single source are typically classified as a medium-severity alert. However, if these failures are followed by a successful authentication (Event ID 4624), the severity is elevated to high due to potential account compromise.
 
 
 
-##### **Lessons Learned**
+#### **Dashboard Visualization**
+
+
+
+\## Splunk Dashboard Visualization
+
+
+
+!\[Splunk Dashboard](screenshots/splunk\_dashboard\_overview.png)
+
+
+
+SOC monitoring dashboard visualizing brute force activity within the isolated lab network.
+
+
+
+#### **Lessons Learned**
 
 
 
@@ -226,24 +268,5 @@ In a real SOC environment, the same detection logic applies and could be useful 
 
 
 
-##### **Future Improvements**
+#### 
 
-
-
-* Implement the account lockout policy and detect Event ID 4740
-
-
-
-* Create a Splunk dashboard for visualizing failed logins.
-
-
-
-* Detect password spraying patterns.
-
-
-
-* Add firewall simulation and network-based telemetry.
-
-
-
-* Build an automated alert inside Splunk.

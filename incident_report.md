@@ -18,7 +18,7 @@ The objective was to validate detection logic for brute-force activity using Win
 |-|-|
 |02/23/2026 06:14:54.421 PM|Hydra initiated from 10.10.10.5|
 |02/23/2026 06:14:54.432 PM|First Failed Authentication Observed|
-|02/23/2026 06:14:54.481 PM|Fifth Failed Authentication Atte|
+|02/23/2026 06:14:54.481 PM|Fifth Failed Authentication Attempt Observed|
 |02/23/2026 06:14:54.748 PM|Detection Threshold Triggered|
 
 #### 
@@ -32,7 +32,7 @@ The objective was to validate detection logic for brute-force activity using Win
 |Kali Linux VM|Attacker|10.10.10.5|
 |Windows 11 Enterprise VM|Target|10.10.10.10|
 
-&nbsp;
+ 
 
 Network: Lab Network 10.10.10.0/24 (VirtualBox Internal Network, fully isolated)
 
@@ -62,7 +62,7 @@ Windows Security Event Log
 
 
 
-|**Field** |**Value**|
+|**Field**|**Value**|
 |-|-|
 |Logon Type|3 (Network)|
 |Authentication Package|NTLM|
@@ -124,8 +124,6 @@ This query finds instances where there are more than five failed authentication 
 
 
 
-
-
 #### **MITRE ATT\&CK Mapping**
 
 
@@ -167,7 +165,4 @@ Since this attack was conducted in a controlled lab environment, no production s
 * Correctly managing audit policy configuration is crucial for detection visibility.
 * Detection based on unique attack indicators reduces false positives.
 * Network segmentation isolates lab activity and prevents interfering with production systems.
-* Effective detection engineering requires a combination of telemetry validation and contextual analysis. 
-
-
-
+* Effective detection engineering requires a combination of telemetry validation and contextual analysis.
