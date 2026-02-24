@@ -26,11 +26,8 @@ This project simulates a brute-force attack in an isolated home SOC lab environm
 
 
 
-**## Lab Architecture**
-
-
-
-**!\[Lab Architecture](architecture/architecture.png)**
+## Lab Architecture
+![Lab Architecture](architecture/architecture.png)
 
 
 
@@ -61,15 +58,10 @@ Subnet: 10.10.10.0/24
 |Kali Linux VM|Attacker|10.10.10.5|
 |Windows 11 Enterprise VM|Target + Splunk SIEM|10.10.10.10|
 
-## 
+## VirtualBox Network Isolation
+![Kali Network Config](screenshots/virtualbox_network_kali.png)
+![Windows Network Config](screenshots/virtualbox_network_windows.png)
 
-VirtualBox Network Isolation
-
-
-
-!\[Kali Network Config](screenshots/virtualbox\_network\_kali.png)
-
-!\[Windows Network Config](screenshots/virtualbox\_network\_windows.png)
 
 
 
@@ -112,11 +104,8 @@ To verify event logging, I attempted to log in with incorrect credentials and co
 
 
 
-\## Detection Evidence – Event ID 4625
-
-
-
-!\[Event Viewer 4625](screenshots/eventviewer\_4625.png)
+## Evidence – Event ID 4625
+![Event Viewer 4625](screenshots/eventviewer_4625.png)
 
 
 
@@ -236,11 +225,8 @@ In a production environment, repeated authentication failures from a single sour
 
 
 
-\## Splunk Dashboard Visualization
-
-
-
-!\[Splunk Dashboard](screenshots/splunk\_dashboard\_overview.png)
+## Splunk Dashboard
+![Splunk Dashboard](screenshots/splunk_dashboard_overview.png)
 
 
 
