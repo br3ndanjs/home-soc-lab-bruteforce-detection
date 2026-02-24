@@ -1,0 +1,18 @@
+# Basic failed login query
+index=wineventlog EventCode=4625
+
+# Threshold-based detection
+index=wineventlog EventCode=4625
+| stats count by Source_Network_Address, Account_Name
+| where count > 5
+| sort -count
+
+# Time-window detection (1 minute)
+index=wineventlog EventCode=4625
+| bin _time span=1m
+| stats count by _time, Source_Network_Address, Account_Name
+| where count > 5
+
+# Failed logons over time
+index=wineventlog EventCode=4625
+| timechart span=1m count as Failed_Logons
