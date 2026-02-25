@@ -248,6 +248,8 @@ SOC monitoring dashboard visualizing brute force activity within the isolated la
 
 * A well-designed Splunk index improves detection clarity.
 
+Disclaimer: All activity performed in an isolated lab; no production/external systems involved.
+
 
 
 * Threshold-based detection reduces false positives.
